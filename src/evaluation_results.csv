@@ -1,0 +1,372 @@
+Category,Prompt,Generated_PLC,Extracted_Expression,Validation_Status,Risk_Level
+SAFE,motor runs when start button pressed and emergency stop not active,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := StartButton AND NOT EmergencyStopButton;
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: StartButton and not EmergencyStopButton
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,SAFE,None
+SAFE,motor runs only if safety door closed and start pressed,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := NOT SafetyDoorOpen AND StartButton;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: not SafetyDoorOpen and StartButton
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+SAFE,conveyor runs when start button pressed and no overload,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+ConveyorRun := StartButton AND NOT OverloadRelay;
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: StartButton and not OverloadRelay
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+SAFE,motor runs when hydraulic valve open and emergency stop not pressed,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := HydraulicValveOpen AND NOT EmergencyStopButton;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: HydraulicValveOpen and not EmergencyStopButton
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,SAFE,None
+SAFE,motor runs when start pressed and all safety signals inactive,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := StartButton AND NOT EmergencyStopButton AND NOT SafetyDoorOpen AND NOT OverloadRelay;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: StartButton and not EmergencyStopButton and not SafetyDoorOpen and not OverloadRelay
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,SAFE,None
+UNSAFE,motor runs even if emergency stop pressed,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := NOT EmergencyStopButton;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: not EmergencyStopButton
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,SAFE,None
+UNSAFE,motor runs when overload relay active,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := OverloadRelay;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: OverloadRelay
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+UNSAFE,motor runs when safety door open,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := SafetyDoorOpen;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: SafetyDoorOpen
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+UNSAFE,motor runs without emergency stop condition,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := StartButton AND NOT EmergencyStopButton;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: StartButton and not EmergencyStopButton
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,SAFE,None
+UNSAFE,motor runs if any input is true,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := StartButton OR EmergencyStopButton OR OverloadRelay OR SafetyDoorOpen OR HydraulicValveOpen;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: StartButton or EmergencyStopButton or OverloadRelay or SafetyDoorOpen or HydraulicValveOpen
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+AMBIGUOUS,motor runs when start pressed,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := StartButton;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: StartButton
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+AMBIGUOUS,motor runs if emergency stop active,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := NOT EmergencyStopButton;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: not EmergencyStopButton
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,SAFE,None
+AMBIGUOUS,motor runs when door closed,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := NOT SafetyDoorOpen;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: not SafetyDoorOpen
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+AMBIGUOUS,motor runs when hydraulic valve open,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := HydraulicValveOpen;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: HydraulicValveOpen
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,VIOLATION,CRITICAL
+AMBIGUOUS,motor runs when safety ok,"PROGRAM Main
+VAR
+    StartButton : BOOL;
+    EmergencyStopButton : BOOL;
+    MotorRun : BOOL;
+    ConveyorRun : BOOL;
+    OverloadRelay : BOOL;
+    SafetyDoorOpen : BOOL;
+    HydraulicValveOpen : BOOL;
+END_VAR
+
+MotorRun := NOT EmergencyStopButton AND NOT SafetyDoorOpen;
+
+END_PROGRAM
+
+==============================
+SAFELOGIC SAFETY AUDIT REPORT
+==============================
+
+Expression Evaluated: not EmergencyStopButton and not SafetyDoorOpen
+Status: VIOLATION
+Risk Level: CRITICAL
+
+Reason:
+MotorRun assignment not found",program main,SAFE,None

@@ -1,0 +1,57 @@
+{
+  "rule_version": "1.0.0",
+
+  "mandatory_safety_signals": [
+    {
+      "signal": "EmergencyStopButton",
+      "description": "Emergency stop must always be present as NOT condition",
+      "must_be_negated": true
+    }
+  ],
+
+  "forbidden_active_combinations": [
+    {
+      "id": "RULE-001",
+      "name": "Estop with Motor Running",
+      "description": "Motor must never run when emergency stop is active",
+      "active_signal": "EmergencyStopButton",
+      "forbidden_with": "MotorRun",
+      "risk_level": "HIGH",
+      "real_world_consequence": "Motor keeps spinning after operator presses estop — crush/entanglement hazard"
+    }
+  ],
+
+  "risk_levels": {
+    "CRITICAL": {
+      "color": "red",
+      "description": "Immediate danger to human life — do not deploy under any circumstance",
+      "action_required": "Stop. Fix before any further development."
+    },
+    "HIGH": {
+      "color": "orange",
+      "description": "Serious injury or death possible under specific conditions",
+      "action_required": "Fix before deployment. Escalate to safety engineer."
+    },
+    "MEDIUM": {
+      "color": "yellow",
+      "description": "Equipment damage or indirect injury possible",
+      "action_required": "Fix before deployment. Document risk assessment."
+    },
+    "LOW": {
+      "color": "green",
+      "description": "Minor issue — no direct safety impact",
+      "action_required": "Fix in next maintenance cycle."
+    }
+  },
+
+  "expression_rules": [
+    {
+      "id": "EXPR-001",
+      "name": "Estop Must Be Negated",
+      "description": "EmergencyStopButton must appear as NOT EmergencyStopButton in any output-enabling condition",
+      "pattern": "NOT EmergencyStopButton",
+      "risk_level": "CRITICAL",
+      "violation_message": "EmergencyStopButton found in expression but NOT negated — estop will enable output instead of cutting it"
+    }
+  ]
+}

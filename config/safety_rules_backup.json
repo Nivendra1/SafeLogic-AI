@@ -1,0 +1,9 @@
+{
+  "mandatory_signals": ["EmergencyStopButton"],
+  "rules": [
+    {
+      "condition": "StartButton AND EmergencyStopButton",
+      "violation": "Unsafe condition when emergency active"
+    }
+  ]
+}
