@@ -24,25 +24,7 @@ SafeLogic-AI addresses this gap by combining:
 
 ## System Architecture
 
-Input
-|
-v
-LLM Interface
-|
-v
-Rule Hash Generator
-|
-v
-Safety Engine
-|
-v
-Hardening Agent
-|
-v
-Evaluation Module
-|
-v
-Streamlit Interface
+![System Architecture](architecture.png)
 
 Core modules:
 
