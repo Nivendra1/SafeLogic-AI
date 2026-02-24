@@ -59,7 +59,7 @@ Core modules:
 ---
 
 ## Technology Stack
-
+This system was developed and tested on a GPU-enabled environment for accelerated LLM inference.
 - Python
 - Streamlit
 - Rule-based validation logic
